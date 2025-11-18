@@ -2,7 +2,7 @@
 # filtering features on the rest of the workspace, breaking other tests.
 #
 # DO NOT ADD THIS TO THE ROOT WORKSPACE.
-[workspace]
+#[workspace]
 
 [package]
 name = "test_cargo_max_level_features"
