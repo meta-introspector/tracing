@@ -241,7 +241,7 @@ feature! {
         R: LookupSpan<'a>,
     {
         #[cfg(feature = "smallvec")]
-        spans: iter::Rev<smallvec::IntoIter<SpanRefVecArray<'a, R>>>,
+        spans: iter::Rev<smallvec::IntoIter<SpanRef<'a, R>, 16>>,
         #[cfg(not(feature = "smallvec"))]
         spans: iter::Rev<vec::IntoIter<SpanRef<'a, R>>>,
     }
@@ -266,7 +266,7 @@ feature! {
         #[allow(clippy::wrong_self_convention)]
         pub fn from_root(self) -> ScopeFromRoot<'a, R> {
             #[cfg(feature = "smallvec")]
-            type Buf<T> = smallvec::SmallVec<T>;
+            type Buf<T> = smallvec::SmallVec<T, 16>;
             #[cfg(not(feature = "smallvec"))]
             type Buf<T> = Vec<T>;
             ScopeFromRoot {

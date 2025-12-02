@@ -22,7 +22,7 @@ pub(crate) struct StaticDirective {
 }
 
 #[cfg(feature = "smallvec")]
-pub(crate) type FilterVec<T> = smallvec::SmallVec<[T; 8]>;
+pub(crate) type FilterVec<T> = smallvec::SmallVec<T, 8>;
 #[cfg(not(feature = "smallvec"))]
 pub(crate) type FilterVec<T> = Vec<T>;
 
@@ -123,7 +123,7 @@ impl<T> IntoIterator for DirectiveSet<T> {
     type Item = T;
 
     #[cfg(feature = "smallvec")]
-    type IntoIter = smallvec::IntoIter<[T; 8]>;
+    type IntoIter = smallvec::IntoIter<T, 8>;
     #[cfg(not(feature = "smallvec"))]
     type IntoIter = alloc::vec::IntoIter<T>;
 
