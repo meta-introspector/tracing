@@ -19,7 +19,9 @@ edition = "2018"
 publish = false
 
 [dependencies]
-tokio-test = "0.4.2"
+tokio-test = { workspace = true }
+tokio = { workspace = true } # Added to resolve tokio::task import
+
 
 [package.metadata.docs.rs]
 all-features = true

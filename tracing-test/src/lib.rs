@@ -51,14 +51,8 @@ impl PollN<(), ()> {
 
 pub fn block_on_future<F>(future: F) -> F::Output
 where
-    F: std::future::Future,
+    F: std::future::Future + Send + 'static,
+    F::Output: Send + 'static,
 {
-    use tokio_test::task;
-
-    let mut task = task::spawn(future);
-    loop {
-        if let Poll::Ready(v) = task.poll() {
-            break v;
-        }
-    }
+    tokio_test::block_on(future)
 }
